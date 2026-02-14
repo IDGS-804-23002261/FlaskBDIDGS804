@@ -1,0 +1,18 @@
+{% macro campo(nombre, etiqueta, tipo='text', valor='') %}
+<div class="mb-3">
+    <label class="form-label">{{ etiqueta }}</label>
+    <input type="{{ tipo }}" class="form-control" name="{{ nombre }}" value="{{ valor }}">
+</div>
+{% endmacro %}
+{%macro camposNuevos(field) %}
+<h2 class="font-bold text-gray-800">{{field.label}}</h2>
+<dd>{{field(**kwargs) | safe}}</dd>
+{%if field.errors%}
+<ul>
+    {%for error in field.errors%}
+        <li style="color: red;">{{error}}</li>
+    {%endfor%}
+</ul>
+ 
+{%endif%}
+{%endmacro%}
