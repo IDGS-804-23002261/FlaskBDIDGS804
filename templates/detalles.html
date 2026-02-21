@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block container %}
+
+<div class="flex justify-center py-20">
+<div class="relative bg-neutral-primary-soft max-w-xs w-full p-6 border border-default rounded-base shadow-xs">
+        <button id="dropdownButton" data-dropdown-toggle="dropdown" class="absolute top-2 end-2 text-body hover:text-heading bg-neutral-primary-soft box-border border border-transparent hover:bg-neutral-tertiary focus:ring-4 focus:ring-neutral-tertiary rounded-base p-1.5 focus:outline-none" type="button">
+            <span class="sr-only">Open dropdown</span>
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="3" d="M6 12h.01m6 0h.01m5.99 0h.01"/>
+            </svg>
+        </button>
+
+        <div id="dropdown" class="z-10 bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-36 hidden">
+
+            <ul class="p-2 text-sm text-body font-medium">
+
+                <li>
+                    <a href="/index"
+                    class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium rounded-md">Regresar</a>
+                </li>
+            </ul>
+        </div>
+
+    <div class="flex flex-col items-center">
+        <img class="w-24 h-24 mb-6 rounded-full"
+        src="{{ url_for('static', filename='dist/img/usuario.png') }}"
+        alt="Usuario image"/>
+        <h5 class="mb-0.5 text-xl font-semibold tracking-tight text-heading">
+            Nombre: {{ nombre }} {{ apaterno }}
+        </h5>
+        <span class="text-sm text-body">
+            Correo: {{ email }}
+        </span>
+        <div class="flex mt-4 md:mt-6 gap-4">
+            <button type="button"
+            onclick="window.location.href='/index'"
+            class="inline-flex self-start w-auto text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                Regresar
+            </button>
+        </div>
+    </div>
+</div>
+
+</div>
+
+{% endblock %}
