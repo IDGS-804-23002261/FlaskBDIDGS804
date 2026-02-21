@@ -2,26 +2,25 @@
 {% block container %}
 {% import "_macros.html" as macros %}
 
-<form class="max-w-md mx-auto" method="POST">
-    {{ form.hidden_tag()}}
+<form class="max-w-md mx-auto" method="POST" action="{{ url_for('eliminar') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <br> <br>
+    <div class="relative z-0 w-full mb-5 group">
+        {{macros.camposNuevos(form.id, class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer")}}
+    </div>
     <div class="relative z-0 w-full mb-5 group">
         {{macros.camposNuevos(form.nombre, class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer")}}
     </div>
-
     <div class="relative z-0 w-full mb-5 group">
         {{macros.camposNuevos(form.apellidos, class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer")}}
-        </div>
-
+    </div>
     <div class="relative z-0 w-full mb-5 group">
         {{macros.camposNuevos(form.correo, class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer")}}
     </div>
-
     <div class="relative z-0 w-full mb-5 group">
         {{macros.camposNuevos(form.telefono, class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer")}}
     </div>
-
-    <button type="submit" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Registar</button>
+    <button type="submit" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Eliminar</button>
     <button type="button" onclick="window.location.href='/'" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Cancelar</button>
 </form>
 
