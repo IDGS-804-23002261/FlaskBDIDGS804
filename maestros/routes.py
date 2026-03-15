@@ -1,11 +1,9 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from models import db, Maestros
 from forms import MaestroForm
-
-maestros = Blueprint('maestros', __name__, template_folder='templates')
+from . import maestros
 
 @maestros.route('/')
-@maestros.route('/index')
 def index():
     form = MaestroForm(request.form)
     maestros_list = Maestros.query.all()
@@ -17,7 +15,6 @@ def crear():
     
     if request.method == 'POST' and form.validate():
         maes = Maestros(
-            matricula=form.matricula.data,
             nombre=form.nombre.data,
             apellidos=form.apellidos.data,
             especialidad=form.especialidad.data,
@@ -71,7 +68,6 @@ def detalles():
         return redirect(url_for('maestros.index'))
     
     return render_template('maestros/detalles.html',
-                         matricula=maes.matricula,
                          nombre=maes.nombre,
                          apellidos=maes.apellidos,
                          especialidad=maes.especialidad,

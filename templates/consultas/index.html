@@ -1,0 +1,123 @@
+{% extends "layout.html" %}
+
+{% block container %}
+
+<div class="min-h-screen flex flex-col items-center justify-center gap-4 px-4">
+
+<h1 class="text-3xl font-semibold text-center mb-4">
+Consultas del Sistema
+</h1>
+
+
+<!-- CONSULTA POR CURSO -->
+<div class="bg-neutral-primary-soft w-full max-w-xs p-5 border border-default rounded-lg shadow-sm">
+
+<h5 class="mb-2 text-lg font-semibold">
+Consultar por Curso
+</h5>
+
+<p class="text-sm text-gray-500 mb-4">
+Selecciona un curso para ver su información y alumnos.
+</p>
+
+<form method="POST" action="{{ url_for('consultas.por_curso') }}">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+<select name="curso_id" required
+class="w-full mb-4 px-3 py-2 border rounded-md text-sm">
+
+<option value="">Selecciona un curso</option>
+
+{% for curso in cursos %}
+<option value="{{ curso.id }}">
+{{ curso.nombre }} - {{ curso.maestro.nombre }}
+</option>
+{% endfor %}
+
+</select>
+
+<button type="submit"
+class="text-white bg-blue-600 hover:bg-blue-700 rounded-md text-sm px-4 py-2">
+Consultar
+</button>
+
+
+</form>
+</div>
+<br>
+
+<!-- CONSULTA POR ALUMNO -->
+<div class="bg-neutral-primary-soft w-full max-w-xs p-5 border border-default rounded-lg shadow-sm">
+
+<h5 class="mb-2 text-lg font-semibold">
+Consultar por Alumno
+</h5>
+
+<p class="text-sm text-gray-500 mb-4">
+Selecciona un alumno para ver sus cursos.
+</p>
+
+<form method="POST" action="{{ url_for('consultas.por_alumno') }}">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+<select name="alumno_id" required
+class="w-full mb-4 px-3 py-2 border rounded-md text-sm">
+
+<option value="">Selecciona un alumno</option>
+
+{% for alumno in alumnos %}
+<option value="{{ alumno.id }}">
+{{ alumno.nombre }} {{ alumno.apellidos }}
+</option>
+{% endfor %}
+
+</select>
+
+<button type="submit"
+class="text-white bg-blue-600 hover:bg-blue-700 rounded-md text-sm px-4 py-2">
+Consultar
+</button>
+
+</form>
+</div>
+<br>
+
+
+<!-- CONSULTA POR MAESTRO -->
+<div class="bg-neutral-primary-soft w-full max-w-xs p-5 border border-default rounded-lg shadow-sm">
+
+<h5 class="mb-2 text-lg font-semibold">
+Consultar por Maestro
+</h5>
+
+<p class="text-sm text-gray-500 mb-4">
+Selecciona un maestro para ver sus cursos.
+</p>
+
+<form method="POST" action="{{ url_for('consultas.por_maestro') }}">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+<select name="maestro_id" required
+class="w-full mb-4 px-3 py-2 border rounded-md text-sm">
+
+<option value="">Selecciona un maestro</option>
+
+{% for maestro in maestros %}
+<option value="{{ maestro.matricula }}">
+{{ maestro.nombre }} {{ maestro.apellidos }}
+</option>
+{% endfor %}
+
+</select>
+
+<button type="submit"
+class="text-white bg-blue-600 hover:bg-blue-700 rounded-md text-sm px-4 py-2">
+Consultar
+</button>
+
+</form>
+</div>
+
+</div>
+
+{% endblock %}

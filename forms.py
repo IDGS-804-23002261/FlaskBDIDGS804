@@ -7,6 +7,7 @@ from wtforms import validators
 
 class UserForm(FlaskForm):
     id = IntegerField("id", [
+        validators.optional(),
         validators.number_range(min=1, max=20, message='valor no valido')
     ])
     nombre = StringField("Nombre", [
@@ -26,7 +27,7 @@ class UserForm(FlaskForm):
 
 class MaestroForm(FlaskForm):
     matricula = IntegerField('Matrícula', [
-        validators.DataRequired(message="La matrícula es requerida")
+        validators.optional()
     ])
     nombre = StringField('Nombre', [
         validators.DataRequired(message="El nombre es requerido")

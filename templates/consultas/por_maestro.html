@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block container %}
+
+<div class="min-h-screen bg-gray-100 py-16 px-4">
+
+<div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl p-8">
+
+<!-- Botón regresar -->
+<a href="{{ url_for('consultas.index') }}"
+class="inline-block bg-green-600 hover:bg-green-700 text-white font-medium px-4 py-2 rounded-lg mb-6">
+← Volver a Consultas
+</a>
+
+<!-- Información del Maestro -->
+<div class="bg-gray-100 rounded-lg p-4 mb-6 border">
+
+<h1 class="text-2xl font-bold text-gray-800 mb-2">
+{{ maestro.nombre }} {{ maestro.apellidos }}
+</h1>
+
+<p class="text-gray-700">
+<strong>Correo:</strong> {{ maestro.email }}
+</p>
+
+</div>
+
+<!-- Cursos que imparte -->
+<h2 class="text-xl font-semibold text-gray-800 mb-4">
+Cursos que imparte ({{ cursos|length }})
+</h2>
+
+{% if cursos %}
+
+<div class="overflow-x-auto">
+
+<table class="w-full border border-gray-300 text-sm">
+
+<thead class="bg-gray-100 text-black">
+
+<tr>
+<th class="px-4 py-3 text-left">Curso</th>
+<th class="px-4 py-3 text-left">Descripción</th>
+<th class="px-4 py-3 text-left">Alumnos inscritos</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for curso in cursos %}
+
+<tr class="border-t hover:bg-gray-100">
+
+<td class="px-4 py-3">{{ curso.nombre }}</td>
+<td class="px-4 py-3">{{ curso.descripcion }}</td>
+<td class="px-4 py-3">{{ curso.alumnos|length }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% else %}
+
+<p class="text-gray-500 text-center py-8">
+Este maestro no tiene cursos asignados
+</p>
+
+{% endif %}
+
+</div>
+</div>
+
+{% endblock %}

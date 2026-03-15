@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block container %}
+
+<div class="flex justify-center py-20">
+    <div class="relative bg-white max-w-md w-full p-6 border border-gray-200 rounded-lg shadow">
+        <div class="flex flex-col items-center">
+            <img class="w-24 h-24 mb-6 rounded-full shadow-lg" 
+            src="{{ url_for('static', filename='dist/img/IDGS805.png') }}"
+            alt="Curso image"/>
+            
+            <h5 class="mb-1 text-xl font-medium text-gray-900">
+                {{ nombre }}
+            </h5>
+            
+            <span class="text-sm text-gray-500">
+                <strong>ID:</strong> {{ id }}
+            </span>
+            <span class="text-sm text-gray-500">
+                <strong>Descripción:</strong> {{ descripcion }}
+            </span>
+            
+            <span class="text-sm text-gray-500">
+                <strong>Maestro:</strong> {{ nombre_maestro }} 
+            </span>
+            
+            <div class="flex mt-4 md:mt-6 gap-4">
+                <a href="{{ url_for('cursos.index') }}" 
+                   class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                    Regresar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

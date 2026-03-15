@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block container %}
+{% import "_macros.html" as macros %}
+
+<form class="max-w-md mx-auto" method="POST" action="{{ url_for('cursos.modificar') }}">
+    {{ form.hidden_tag() }}
+    <br><br>
+    
+    <div class="relative z-0 w-full mb-5 group">
+        {{ macros.camposNuevos(form.id, class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer", readonly=True) }}
+    </div>
+
+    <div class="relative z-0 w-full mb-5 group">
+        {{ macros.camposNuevos(form.nombre, class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer") }}
+    </div>
+
+    <div class="relative z-0 w-full mb-5 group">
+        {{ macros.camposNuevos(form.descripcion, class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer") }}
+    </div>
+
+    <div class="relative z-0 w-full mb-5 group">
+        <label class="block text-gray-700 text-sm font-bold mb-2">Maestro</label>
+        <select name="maestro_id" class="block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600">
+            <option value="">Seleccione un maestro</option>
+            {% for maestro in maestros %}
+                <option value="{{ maestro.matricula }}" {% if maestro.matricula == form.maestro_id.data %}selected{% endif %}>
+                    {{ maestro.nombre }} {{ maestro.apellidos }} - {{ maestro.especialidad }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Actualizar Curso</button>
+    <a href="{{ url_for('cursos.index') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Cancelar</a>
+</form>
+
+{% endblock %}

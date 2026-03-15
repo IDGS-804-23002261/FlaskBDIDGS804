@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block container %}
+{% import "_macros.html" as macros %}
+
+<form class="max-w-md mx-auto" method="POST" action="{{ url_for('inscripciones.crear') }}" novalidate>
+    {{ form.hidden_tag() }}
+    <br><br>
+    
+    <div class="relative z-0 w-full mb-5 group">
+        <label class="block text-gray-700 text-sm font-bold mb-2">Alumno</label>
+        <select name="alumno_id" required class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer">
+            <option value="">Seleccione un alumno</option>
+            {% for alumno in alumnos %}
+                <option value="{{ alumno.id }}">{{ alumno.nombre }} {{ alumno.apellidos }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="relative z-0 w-full mb-5 group">
+        <label class="block text-gray-700 text-sm font-bold mb-2">Curso</label>
+        <select name="curso_id" required class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer">
+            <option value="">Seleccione un curso</option>
+            {% for curso in cursos %}
+                <option value="{{ curso.id }}">{{ curso.nombre }} - {{ curso.maestro.nombre }} {{ curso.maestro.apellidos }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <button type="submit" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Inscribir</button>
+    <a href="{{ url_for('inscripciones.index') }}" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Cancelar</a>
+</form>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block container %}
+<div class="flex justify-center py-20">
+    <div class="relative bg-neutral-primary-soft max-w-md w-full p-6 border border-default rounded-base shadow-xs">
+        <div class="flex flex-col items-center">
+            <h5 class="mb-0.5 text-xl font-semibold tracking-tight text-heading">
+                {{ curso.nombre }}
+            </h5>
+            
+            <span class="text-sm text-body">
+                <strong>Descripción:</strong> {{ curso.descripcion }}
+            </span>
+            
+            <span class="text-sm text-body">
+                <strong>Maestro:</strong> {{ curso.maestro.nombre }} {{ curso.maestro.apellidos }}
+            </span>
+            
+            <div class="w-full mt-6">
+                <h6 class="text-md font-semibold text-heading mb-3 text-center">Alumnos Inscritos</h6>
+                
+                {% if curso.alumnos %}
+                    <div class="space-y-2">
+                        {% for alumno in curso.alumnos %}
+                        <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-3 border border-green-200 dark:border-green-800">
+                            <p class="font-medium text-green-700 dark:text-green-300">{{ alumno.nombre }} {{ alumno.apellidos }}</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">{{ alumno.email }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-sm text-gray-500 dark:text-gray-400 text-center italic">
+                        No hay alumnos inscritos en este curso
+                    </p>
+                {% endif %}
+            </div>
+            
+            <div class="flex mt-6 md:mt-8 gap-4">
+                <a href="{{ url_for('inscripciones.index') }}" class="inline-flex self-start w-auto text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                    Regresar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
